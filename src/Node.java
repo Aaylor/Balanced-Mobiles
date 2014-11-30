@@ -30,4 +30,8 @@ public class Node {
         this.balance    = balance;
     }
 
+    @Override
+    public String toString() {
+        return "[" + leftChild + ", " + rightChild + "]";
+    }
 }
