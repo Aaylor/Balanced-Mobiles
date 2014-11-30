@@ -10,4 +10,10 @@ public class Tree {
         this.root = root;
     }
 
+
+    @Override
+    public String toString() {
+        return root.toString();
+    }
+
 }
