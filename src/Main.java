@@ -1,21 +1,62 @@
+import java.io.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.regex.Pattern;
+
 public class Main {
 
+    public static LinkedList<Integer> readWeight(InputStream stream) {
+        int lineNumber = 1;
+        LinkedList<Integer> weightList = new LinkedList<Integer>();
+        BufferedReader bis = new BufferedReader(new InputStreamReader(stream));
+
+        try {
+            String input;
+            do {
+                input = bis.readLine();
+
+                if (input == null || input.matches("^\\s*$"))
+                    break;
+
+                try {
+                    int weight = Integer.parseInt(input);
+                    weightList.add(weight);
+                } catch (Exception e) {
+                    System.err.println("Error while reading input, line "
+                            + lineNumber + ": expected integer.");
+                }
+            } while(true);
+        } catch (IOException e) {
+            System.err.println("Error while reading input: " + e.getMessage());
+        }
+
+        return weightList;
+    }
+
     public static void main(String[] args) {
-        Leaf l1 = new Leaf(42);
-        Leaf l2 = new Leaf(5);
-        Leaf l3 = new Leaf(3);
 
-        Node n1 = new Node(l1, l2);
-        Node n2 = new Node(n1, l3);
+        LinkedList<Integer> weightList = new LinkedList<Integer>();
+        HashMap<String, Object> arguments = CLIParser.parse(args);
 
-        Tree t = new Tree(n2);
+        if (arguments.containsKey("filename")) {
+            try {
+                weightList = readWeight(
+                        new FileInputStream((String)arguments.get("filename")));
+            } catch (FileNotFoundException e) {
+                System.err.println("Error while getting file: " + e.getMessage());
+                System.err.println("Aborting.");
+                System.exit(1);
+            }
+        } else {
+            weightList = readWeight(System.in);
+        }
 
-        System.out.println("Tree.root.weight  = " + t.root.weight);
-        System.out.println("Tree.root.balance = " + t.root.balance);
+        if (weightList.size() == 0) {
+            System.out.println("No entry.");
+            System.exit(0);
+        }
 
-        System.out.println("Tree.root.weight  = " + t.root.leftChild.weight);
-        System.out.println("Tree.root.balance = " + t.root.leftChild.balance);
-
+        System.out.println(weightList);
     }
 
 }
