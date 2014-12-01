@@ -1,25 +1,27 @@
 import java.io.*;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.regex.Pattern;
 
 public class Main {
 
     public static LinkedList<Integer> readWeight(InputStream stream) {
         int lineNumber = 1;
-        LinkedList<Integer> weightList = new LinkedList<Integer>();
+        LinkedList<Integer> weightList = new LinkedList();
         BufferedReader bis = new BufferedReader(new InputStreamReader(stream));
 
         try {
             String input;
+            String prompt = " ~~~> ";
             do {
+                if (CLIParser.opts.readSTDIN) System.out.print(prompt);
+
                 input = bis.readLine();
 
                 if (input == null || input.matches("^\\s*$"))
                     break;
 
                 try {
-                    int weight = Integer.parseInt(input);
+                    int weight = Integer.parseInt(input.trim());
                     weightList.add(weight);
                 } catch (Exception e) {
                     System.err.println("Error while reading input, line "
@@ -35,7 +37,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        LinkedList<Integer> weightList = new LinkedList<Integer>();
+        LinkedList<Integer> weightList = new LinkedList();
         HashMap<String, Object> arguments = CLIParser.parse(args);
 
         if (arguments.containsKey("filename")) {
