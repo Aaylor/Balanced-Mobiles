@@ -1,12 +1,13 @@
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
 public class Main {
 
-    public static LinkedList<Integer> readWeight(InputStream stream) {
+    public static ArrayList<Integer> readWeight(InputStream stream) {
         int lineNumber = 1;
-        LinkedList<Integer> weightList = new LinkedList();
+        ArrayList<Integer> weightList = new ArrayList();
         BufferedReader bis = new BufferedReader(new InputStreamReader(stream));
 
         try {
@@ -35,9 +36,15 @@ public class Main {
         return weightList;
     }
 
+
+    public static void runAlgorithm(ArrayList<Integer> weightList) {
+
+    }
+
+
     public static void main(String[] args) {
 
-        LinkedList<Integer> weightList = new LinkedList();
+        ArrayList<Integer> weightList = new ArrayList();
         HashMap<String, Object> arguments = CLIParser.parse(args);
 
         if (arguments.containsKey("filename")) {
@@ -58,7 +65,7 @@ public class Main {
             System.exit(0);
         }
 
-        System.out.println(weightList);
+        runAlgorithm(weightList);
     }
 
 }
