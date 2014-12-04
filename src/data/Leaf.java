@@ -1,3 +1,7 @@
+package data;
+
+import data.Node;
+
 public class Leaf extends Node {
 
     public Leaf() {
@@ -5,7 +9,7 @@ public class Leaf extends Node {
     }
 
     public Leaf(int weight) {
-        super(null, null, weight, 0);
+        super(null, null, weight, 0, 0);
     }
 
     @Override
