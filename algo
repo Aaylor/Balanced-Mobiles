@@ -1,0 +1,8 @@
+#!/bin/bash
+
+DIR=$(pwd)/out/production/algorithm
+LIBS=
+
+[ ! -d out/production ] && echo "No compiled source." && exit 1
+
+java -classpath "$DIR:$LIBS" Main $@
