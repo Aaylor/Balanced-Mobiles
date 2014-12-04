@@ -20,6 +20,10 @@ public abstract class AbstractAlgorithms {
      */
     public int    operationCounter   = 0;
 
+    /**
+     * Number of comparison needed by the algorithm to return the tree
+     */
+    public int    comparisonCounter  = 0;
 
     /**
      * This function will return the tree corresponding to
@@ -43,6 +47,26 @@ public abstract class AbstractAlgorithms {
         timer = ((double)(end - beginning)) / 1000.0;
         if (CLIParser.opts.time)
             System.out.println(timer);
+
+        if (CLIParser.opts.affectation)
+            System.out.println("Affectations: " + affectationCounter);
+
+        if (CLIParser.opts.comparison)
+            System.out.println("Comparisons: " + comparisonCounter);
+
+        if (CLIParser.opts.operation)
+            System.out.println("Operations: " + operationCounter);
     }
 
+    /**
+     * Add the number of each counter into their store values
+     * @param aC number of affectation to add
+     * @param oC number of operation to add
+     * @param cC number of comparison to add
+     */
+    protected void addToCounter(int aC, int oC, int cC) {
+        affectationCounter += aC;
+        operationCounter   += oC;
+        comparisonCounter  += cC;
+    }
 }

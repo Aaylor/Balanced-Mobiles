@@ -16,9 +16,11 @@ public class CLIParser {
      * Option class. Contains the result of args parsing.
      */
     public static class Options {
-        public static boolean readSTDIN = true;
-        public static boolean time      = false;
-        public static boolean random    = false;
+        public static boolean readSTDIN   = true;
+        public static boolean time        = false;
+        public static boolean affectation = false;
+        public static boolean comparison  = false;
+        public static boolean operation   = false;
 
         public static Algorithm algo    = Algorithm.OrderedGreedyAlgorithm;
     }
@@ -46,6 +48,15 @@ public class CLIParser {
 
         options.put("-r", 1);
         options.put("--random", 1);
+
+        options.put("-a", 0);
+        options.put("--affectation", 0);
+
+        options.put("-c", 0);
+        options.put("--comparison", 0);
+
+        options.put("-o", 0);
+        options.put("--operation", 0);
     }
 
     /**
@@ -86,15 +97,26 @@ public class CLIParser {
             switch (args[i].charAt(0)) {
                 case '-':
                     switch(args[i]) {
-                        case "-t":
-                        case "--time":
-                            opts.time = true;
+                        case "-a":
+                        case "--affectation":
+                            opts.affectation = true;
+                            break;
+                        case "-c":
+                        case "--comparison":
+                            opts.comparison = true;
+                            break;
+                        case "-o":
+                        case "--operation":
+                            opts.operation = true;
                             break;
                         case "-r":
                         case "--random":
-                            opts.random     = true;
                             map.put("random", toInt(getArgument(args, i + 1)));
                             i++;
+                            break;
+                        case "-t":
+                        case "--time":
+                            opts.time = true;
                             break;
                         default:
                             throw new IllegalArgumentException(

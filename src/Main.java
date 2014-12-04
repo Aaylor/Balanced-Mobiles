@@ -55,7 +55,7 @@ public class Main {
         Random generator = new Random();
 
         for (int i = 0; i < size; i++) {
-            weightList.add(generator.nextInt(size));
+            weightList.add(generator.nextInt(size) + 1);
         }
 
         return weightList;
