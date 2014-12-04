@@ -1,5 +1,3 @@
-package starter;
-
 import algorithms.AbstractAlgorithms;
 import algorithms.OrderedGreedyAlgorithm;
 import helpers.CLIParser;

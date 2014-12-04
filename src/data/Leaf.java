@@ -1,7 +1,5 @@
 package data;
 
-import data.Node;
-
 public class Leaf extends Node {
 
     public Leaf() {
