@@ -7,8 +7,15 @@ import java.util.ArrayList;
 
 public class OrderedGreedyAlgorithm extends AbstractAlgorithms {
 
+    /**
+     * The Weight list.
+     */
     private Integer[] W;
 
+    /**
+     * Create the algorithm with the given entry.
+     * @param entry weight list
+     */
     public OrderedGreedyAlgorithm(ArrayList<Integer> entry) {
         W = entry.toArray(new Integer[0]);
     }
@@ -18,6 +25,13 @@ public class OrderedGreedyAlgorithm extends AbstractAlgorithms {
         return new Tree(constructTree(0, W.length - 1));
     }
 
+    /**
+     * Construit l'arbre en fonction de la liste des poids se trouvant
+     * entre le début et la fin donnée.
+     * @param beg beginning
+     * @param end end
+     * @return le nouveau noeud crée
+     */
     private Node constructTree(int beg, int end) {
         if (beg >= end) {
             return new Leaf(W[beg]);

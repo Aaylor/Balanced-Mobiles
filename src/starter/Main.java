@@ -11,6 +11,11 @@ import java.util.Random;
 
 public class Main {
 
+    /**
+     * Read weight in the given input (could be a file or STDIN)
+     * @param stream stream
+     * @return the weight list
+     */
     public static ArrayList<Integer> readWeight(InputStream stream) {
         int lineNumber = 1;
         ArrayList<Integer> weightList = new ArrayList();
@@ -42,6 +47,11 @@ public class Main {
         return weightList;
     }
 
+    /**
+     * Create a random weight list
+     * @param size the list size
+     * @return the weight list
+     */
     public static ArrayList<Integer> randomWeight(int size) {
         ArrayList<Integer> weightList = new ArrayList<>();
         Random generator = new Random();
@@ -53,7 +63,10 @@ public class Main {
         return weightList;
     }
 
-
+    /**
+     * Run the correct algorithm, according to the CLIParser args parsing.
+     * @param weightList
+     */
     public static void runAlgorithm(ArrayList<Integer> weightList) {
         AbstractAlgorithms algorithm;
 
