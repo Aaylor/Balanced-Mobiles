@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="projet_algo" default="all">
+  
+  
+  <property file="algorithm.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.pyc/**"/>
+    <exclude name="**/.pyo/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/*.lib/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/.bundle/**"/>
+    <exclude name="**/*.rbc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.zip"/>
+    <include name="*.apk"/>
+    <include name="*.war"/>
+    <include name="*.egg"/>
+    <include name="*.ear"/>
+    <include name="*.ane"/>
+    <include name="*.swc"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+  <path id="jdk.classpath.1.8">
+    <fileset dir="${jdk.home.1.8}">
+      <include name="lib/ant-javafx.jar"/>
+      <include name="lib/dt.jar"/>
+      <include name="lib/javafx-mx.jar"/>
+      <include name="lib/jconsole.jar"/>
+      <include name="lib/sa-jdi.jar"/>
+      <include name="lib/tools.jar"/>
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jfr.jar"/>
+      <include name="jre/lib/jfxswt.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+      <include name="jre/lib/ext/cldrdata.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/jfxrt.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/nashorn.jar"/>
+      <include name="jre/lib/ext/sunec.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+      <include name="jre/lib/ext/zipfs.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module algorithm -->
+  
+  <dirname property="module.algorithm.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.algorithm" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.algorithm" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.algorithm" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.algorithm" value="-encoding UTF-8 -source 1.7 ${compiler.args}"/>
+  
+  <property name="algorithm.output.dir" value="${module.algorithm.basedir}/out/production/algorithm"/>
+  <property name="algorithm.testoutput.dir" value="${module.algorithm.basedir}/out/test/algorithm"/>
+  
+  <path id="algorithm.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="algorithm.module.production.classpath">
+    <path refid="${module.jdk.classpath.algorithm}"/>
+  </path>
+  
+  <path id="algorithm.runtime.production.module.classpath">
+    <pathelement location="${algorithm.output.dir}"/>
+  </path>
+  
+  <path id="algorithm.module.classpath">
+    <path refid="${module.jdk.classpath.algorithm}"/>
+    <pathelement location="${algorithm.output.dir}"/>
+  </path>
+  
+  <path id="algorithm.runtime.module.classpath">
+    <pathelement location="${algorithm.testoutput.dir}"/>
+    <pathelement location="${algorithm.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.algorithm">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.algorithm">
+    <patternset refid="excluded.from.module.algorithm"/>
+  </patternset>
+  
+  <path id="algorithm.module.sourcepath">
+    <dirset dir="${module.algorithm.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.algorithm" depends="compile.module.algorithm.production,compile.module.algorithm.tests" description="Compile module algorithm"/>
+  
+  <target name="compile.module.algorithm.production" description="Compile module algorithm; production classes">
+    <mkdir dir="${algorithm.output.dir}"/>
+    <javac destdir="${algorithm.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.algorithm}/javac">
+      <compilerarg line="${compiler.args.algorithm}"/>
+      <bootclasspath refid="algorithm.module.bootclasspath"/>
+      <classpath refid="algorithm.module.production.classpath"/>
+      <src refid="algorithm.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.algorithm"/>
+    </javac>
+    
+    <copy todir="${algorithm.output.dir}">
+      <fileset dir="${module.algorithm.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.algorithm.tests" depends="compile.module.algorithm.production" description="compile module algorithm; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.algorithm" description="cleanup module">
+    <delete dir="${algorithm.output.dir}"/>
+    <delete dir="${algorithm.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.algorithm" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.algorithm" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>
