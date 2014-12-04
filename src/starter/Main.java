@@ -1,7 +1,13 @@
+package starter;
+
+import algorithms.AbstractAlgorithms;
+import algorithms.OrderedGreedyAlgorithm;
+import helpers.CLIParser;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.Random;
 
 public class Main {
 
@@ -36,9 +42,31 @@ public class Main {
         return weightList;
     }
 
+    public static ArrayList<Integer> randomWeight(int size) {
+        ArrayList<Integer> weightList = new ArrayList<>();
+        Random generator = new Random();
+
+        for (int i = 0; i < size; i++) {
+            weightList.add(generator.nextInt(size));
+        }
+
+        return weightList;
+    }
+
 
     public static void runAlgorithm(ArrayList<Integer> weightList) {
+        AbstractAlgorithms algorithm;
 
+        switch(CLIParser.opts.algo) {
+            case OrderedGreedyAlgorithm:
+                algorithm = new OrderedGreedyAlgorithm(weightList);
+                break;
+            default:
+                algorithm = new OrderedGreedyAlgorithm(weightList);
+                break;
+        }
+
+        algorithm.run();
     }
 
 
@@ -56,6 +84,8 @@ public class Main {
                 System.err.println("Aborting.");
                 System.exit(1);
             }
+        } else if (arguments.containsKey("random")) {
+            weightList = randomWeight((Integer)arguments.get("random"));
         } else {
             weightList = readWeight(System.in);
         }
