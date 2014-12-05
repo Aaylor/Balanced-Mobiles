@@ -58,31 +58,30 @@
   
   <!-- JDK definitions -->
   
-  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
-  <path id="jdk.classpath.1.8">
-    <fileset dir="${jdk.home.1.8}">
+  <property name="jdk.bin.1.7" value="${jdk.home.1.7}/bin"/>
+  <path id="jdk.classpath.1.7">
+    <fileset dir="${jdk.home.1.7}">
       <include name="lib/ant-javafx.jar"/>
       <include name="lib/dt.jar"/>
+      <include name="lib/javafx-doclet.jar"/>
       <include name="lib/javafx-mx.jar"/>
       <include name="lib/jconsole.jar"/>
       <include name="lib/sa-jdi.jar"/>
       <include name="lib/tools.jar"/>
       <include name="jre/lib/charsets.jar"/>
       <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/htmlconverter.jar"/>
       <include name="jre/lib/javaws.jar"/>
       <include name="jre/lib/jce.jar"/>
       <include name="jre/lib/jfr.jar"/>
-      <include name="jre/lib/jfxswt.jar"/>
+      <include name="jre/lib/jfxrt.jar"/>
       <include name="jre/lib/jsse.jar"/>
       <include name="jre/lib/management-agent.jar"/>
       <include name="jre/lib/plugin.jar"/>
       <include name="jre/lib/resources.jar"/>
       <include name="jre/lib/rt.jar"/>
-      <include name="jre/lib/ext/cldrdata.jar"/>
       <include name="jre/lib/ext/dnsns.jar"/>
-      <include name="jre/lib/ext/jfxrt.jar"/>
       <include name="jre/lib/ext/localedata.jar"/>
-      <include name="jre/lib/ext/nashorn.jar"/>
       <include name="jre/lib/ext/sunec.jar"/>
       <include name="jre/lib/ext/sunjce_provider.jar"/>
       <include name="jre/lib/ext/sunpkcs11.jar"/>
@@ -90,9 +89,9 @@
     </fileset>
   </path>
   
-  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
-  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
-  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  <property name="project.jdk.home" value=""/>
+  <property name="project.jdk.bin" value=""/>
+  <property name="project.jdk.classpath" value=""/>
   
   <!-- Modules -->
   
@@ -102,11 +101,11 @@
   <dirname property="module.algorithm.basedir" file="${ant.file}"/>
   
   
-  <property name="module.jdk.home.algorithm" value="${project.jdk.home}"/>
-  <property name="module.jdk.bin.algorithm" value="${project.jdk.bin}"/>
-  <property name="module.jdk.classpath.algorithm" value="${project.jdk.classpath}"/>
+  <property name="module.jdk.home.algorithm" value="${jdk.home.1.7}"/>
+  <property name="module.jdk.bin.algorithm" value="${jdk.bin.1.7}"/>
+  <property name="module.jdk.classpath.algorithm" value="jdk.classpath.1.7"/>
   
-  <property name="compiler.args.algorithm" value="-encoding UTF-8 -source 1.7 ${compiler.args}"/>
+  <property name="compiler.args.algorithm" value="-encoding UTF-8 -source 1.7 -target 1.7 ${compiler.args}"/>
   
   <property name="algorithm.output.dir" value="${module.algorithm.basedir}/out/production/algorithm"/>
   <property name="algorithm.testoutput.dir" value="${module.algorithm.basedir}/out/test/algorithm"/>
