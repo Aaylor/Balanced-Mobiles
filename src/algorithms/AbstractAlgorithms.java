@@ -45,17 +45,14 @@ public abstract class AbstractAlgorithms {
         System.out.println(tree.root.totalBalance);
 
         timer = ((double)(end - beginning)) / 1000.0;
-        if (CLIParser.opts.time)
+        if (CLIParser.Options.time)
             System.out.println(timer);
 
-        if (CLIParser.opts.affectation)
+        if (CLIParser.Options.counter) {
             System.out.println("Affectations: " + affectationCounter);
-
-        if (CLIParser.opts.comparison)
             System.out.println("Comparisons: " + comparisonCounter);
-
-        if (CLIParser.opts.operation)
             System.out.println("Operations: " + operationCounter);
+        }
     }
 
     /**

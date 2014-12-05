@@ -23,7 +23,7 @@ public class Main {
             String input;
             String prompt = " ~~~> ";
             do {
-                if (CLIParser.opts.readSTDIN) System.out.print(prompt);
+                if (CLIParser.Options.readSTDIN) System.out.print(prompt);
 
                 input = bis.readLine();
 
@@ -68,7 +68,7 @@ public class Main {
     public static void runAlgorithm(ArrayList<Integer> weightList) {
         AbstractAlgorithms algorithm;
 
-        switch(CLIParser.opts.algo) {
+        switch(CLIParser.Options.algo) {
             case OrderedGreedyAlgorithm:
                 algorithm = new OrderedGreedyAlgorithm(weightList);
                 break;

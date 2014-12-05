@@ -16,11 +16,9 @@ public class CLIParser {
      * Option class. Contains the result of args parsing.
      */
     public static class Options {
-        public static boolean readSTDIN   = true;
-        public static boolean time        = false;
-        public static boolean affectation = false;
-        public static boolean comparison  = false;
-        public static boolean operation   = false;
+        public static boolean readSTDIN = true;
+        public static boolean time      = false;
+        public static boolean counter   = false;
 
         public static Algorithm algo    = Algorithm.OrderedGreedyAlgorithm;
     }
@@ -32,9 +30,6 @@ public class CLIParser {
 
     /** Contains every options */
     private static HashMap<String, Integer> options;
-
-    /** Options */
-    public static Options opts = new Options();
 
     static {
         parser = new CLIParser();
@@ -49,14 +44,8 @@ public class CLIParser {
         options.put("-r", 1);
         options.put("--random", 1);
 
-        options.put("-a", 0);
-        options.put("--affectation", 0);
-
         options.put("-c", 0);
-        options.put("--comparison", 0);
-
-        options.put("-o", 0);
-        options.put("--operation", 0);
+        options.put("--counter", 0);
     }
 
     /**
@@ -97,17 +86,9 @@ public class CLIParser {
             switch (args[i].charAt(0)) {
                 case '-':
                     switch(args[i]) {
-                        case "-a":
-                        case "--affectation":
-                            opts.affectation = true;
-                            break;
                         case "-c":
-                        case "--comparison":
-                            opts.comparison = true;
-                            break;
-                        case "-o":
-                        case "--operation":
-                            opts.operation = true;
+                        case "--counter":
+                            Options.counter = true;
                             break;
                         case "-r":
                         case "--random":
@@ -116,7 +97,7 @@ public class CLIParser {
                             break;
                         case "-t":
                         case "--time":
-                            opts.time = true;
+                            Options.time = true;
                             break;
                         default:
                             throw new IllegalArgumentException(
@@ -126,8 +107,8 @@ public class CLIParser {
 
 
                 default:
-                    opts.readSTDIN = false;
-                    map.put("filename", new String(args[i]));
+                    Options.readSTDIN = false;
+                    map.put("filename", args[i]);
                     break;
             }
         }
