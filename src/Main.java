@@ -1,5 +1,7 @@
 import algorithms.AbstractAlgorithms;
 import algorithms.OrderedGreedyAlgorithm;
+import algorithms.OrderedNaiveAlgorithm2;
+import algorithms.UnorderedAlgorithm;
 import helpers.CLIParser;
 
 import java.io.*;
@@ -75,6 +77,12 @@ public class Main {
         switch(CLIParser.Options.algo) {
             case OrderedGreedyAlgorithm:
                 algorithm = new OrderedGreedyAlgorithm(weightList);
+                break;
+            case OrderedAlgorithm2:
+                algorithm = new OrderedNaiveAlgorithm2(weightList);
+                break;
+            case UnorderedAlgorithm1:
+                algorithm = new UnorderedAlgorithm(weightList);
                 break;
             default:
                 algorithm = new OrderedGreedyAlgorithm(weightList);
