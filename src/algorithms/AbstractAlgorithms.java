@@ -38,7 +38,15 @@ public abstract class AbstractAlgorithms {
      */
     public final void run() {
         long beginning = System.currentTimeMillis();
-        Tree tree = mainFunction();
+
+        Tree tree;
+        try {
+            tree = mainFunction();
+        } catch (StackOverflowError e) {
+            System.err.println("Stack overflow, aborting.");
+            System.exit(1);
+            return; /* Not reached, but needed. Yeah. Java. */
+        }
         long end = System.currentTimeMillis();
 
         System.out.println(tree);
@@ -50,8 +58,8 @@ public abstract class AbstractAlgorithms {
 
         if (CLIParser.Options.counter) {
             System.out.println("Affectations: " + affectationCounter);
-            System.out.println("Comparisons: " + comparisonCounter);
-            System.out.println("Operations: " + operationCounter);
+            System.out.println("Comparisons:  " + comparisonCounter);
+            System.out.println("Operations:   " + operationCounter);
         }
     }
 
