@@ -1,6 +1,9 @@
 package helpers;
 
 
+import java.util.Iterator;
+import java.util.LinkedList;
+
 public final class ExtMath {
 
     private ExtMath() {}
@@ -23,6 +26,17 @@ public final class ExtMath {
         }
 
         return result;
+    }
+
+    public static Integer sum(LinkedList<Integer> array) {
+        Iterator<Integer> iterator = array.iterator();
+        int sum = 0;
+
+        while (iterator.hasNext()) {
+            sum += iterator.next();
+        }
+
+        return sum;
     }
 
     /**

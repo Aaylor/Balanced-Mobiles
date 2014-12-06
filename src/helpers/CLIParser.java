@@ -1,5 +1,7 @@
 package helpers;
 
+import algorithms.UnorderedAlgorithm;
+
 import java.util.HashMap;
 
 
@@ -9,7 +11,9 @@ public class CLIParser {
      * Enumeration of each algorithm.
      */
     public static enum Algorithm {
-        OrderedGreedyAlgorithm
+        OrderedGreedyAlgorithm,
+        OrderedAlgorithm2,
+        UnorderedAlgorithm1,
     }
 
     /**
@@ -46,6 +50,9 @@ public class CLIParser {
 
         options.put("-c", 0);
         options.put("--counter", 0);
+
+        options.put("-o2", 0);
+        options.put("--ordered-2", 0);
     }
 
     /**
@@ -98,6 +105,14 @@ public class CLIParser {
                         case "-t":
                         case "--time":
                             Options.time = true;
+                            break;
+                        case "-o2":
+                        case "--ordered-2":
+                            Options.algo = Algorithm.OrderedAlgorithm2;
+                            break;
+                        case "-u1":
+                        case "--unordered-1":
+                            Options.algo = Algorithm.UnorderedAlgorithm1;
                             break;
                         default:
                             throw new IllegalArgumentException(
