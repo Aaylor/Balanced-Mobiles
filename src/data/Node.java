@@ -19,12 +19,7 @@ public class Node {
     }
 
     public Node(Node leftChild, Node rightChild) {
-        this.leftChild  = leftChild;
-        this.rightChild = rightChild;
-
-        this.weight  = leftChild.weight + rightChild.weight;
-        this.balance = Math.abs(leftChild.weight - rightChild.weight);
-        this.totalBalance = leftChild.totalBalance + rightChild.totalBalance + balance;
+        setChildren(leftChild, rightChild);
     }
 
     public Node(Node leftChild, Node rightChild, int weight, int balance, int totalBalance) {
@@ -34,6 +29,14 @@ public class Node {
         this.weight     = weight;
         this.balance    = balance;
         this.totalBalance = totalBalance;
+    }
+
+    public void setChildren(Node leftChild, Node rightChild) {
+        this.leftChild    = leftChild;
+        this.rightChild   = rightChild;
+        this.weight       = leftChild.weight + rightChild.weight;
+        this.balance      = Math.abs(leftChild.weight - rightChild.weight);
+        this.totalBalance = leftChild.totalBalance + rightChild.totalBalance + balance;
     }
 
     @Override

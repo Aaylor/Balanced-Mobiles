@@ -11,6 +11,11 @@ public class Leaf extends Node {
     }
 
     @Override
+    public void setChildren(Node left, Node right) {
+        throw new UnsupportedOperationException("can't set children on a leaf.");
+    }
+
+    @Override
     public String toString() {
         return "" + weight;
     }
