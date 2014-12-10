@@ -1,11 +1,12 @@
 package algorithms;
 
+import com.sun.org.apache.xerces.internal.impl.msg.XMLMessageFormatter_ja;
 import data.*;
 import helpers.ExtMath;
 
 import java.util.ArrayList;
 
-public class OrderedGreedyAlgorithm extends AbstractAlgorithms {
+public class OrderedAlgorithm extends AbstractAlgorithms {
 
     /**
      * The Weight list.
@@ -16,7 +17,7 @@ public class OrderedGreedyAlgorithm extends AbstractAlgorithms {
      * Create the algorithm with the given entry.
      * @param entry weight list
      */
-    public OrderedGreedyAlgorithm(ArrayList<Integer> entry) {
+    public OrderedAlgorithm(ArrayList<Integer> entry) {
         W = entry.toArray(new Integer[0]);
     }
 
@@ -59,6 +60,7 @@ public class OrderedGreedyAlgorithm extends AbstractAlgorithms {
             }
 
             double last = step + W[cpt];
+            double absStep = Math.abs(step);
             addToCounter(1, 1, 0);
 
             /*
@@ -71,19 +73,20 @@ public class OrderedGreedyAlgorithm extends AbstractAlgorithms {
                     Ou si step est égal à 0
                 Alors on décale à gauche.
              */
-            if (Math.abs(step) < last || step == 0) {
+            if (absStep < last || step == 0) {
                 ++cpt;
-                leftSum  -= step;
-                rightSum += step;
+
+                leftSum  += absStep;
+                rightSum -= absStep;
 
                 if (Math.abs(step) < last) comparisonCounter++;
-                else comparisonCounter += 3;
-                addToCounter(3, 0, 3);
+                else comparisonCounter += 2;
+                addToCounter(1, 1, 0);
             } else {
                 leftSum  -= last;
                 rightSum += last;
-                addToCounter(2, 0, 4);
             }
+            addToCounter(2, 0, 4);
 
             return new Node(constructTree(beg, cpt - 1, (int)leftSum), constructTree(cpt, end, (int)rightSum));
         }

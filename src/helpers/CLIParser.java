@@ -1,6 +1,5 @@
 package helpers;
 
-import javax.swing.text.html.Option;
 import java.util.HashMap;
 
 
@@ -10,7 +9,7 @@ public class CLIParser {
      * Enumeration of each algorithm.
      */
     public static enum Algorithm {
-        OrderedGreedyAlgorithm,
+        OrderedAlgorithm,
         OrderedAlgorithm2,
         UnorderedAlgorithm1,
         UnorderedAlgorithm2,
@@ -26,7 +25,7 @@ public class CLIParser {
         public static boolean counter   = false;
         public static boolean noout     = false;
 
-        public static Algorithm algo    = Algorithm.OrderedGreedyAlgorithm;
+        public static Algorithm algo    = Algorithm.OrderedAlgorithm;
 
         public static Integer maxNumber = 424242;
     }
@@ -102,8 +101,9 @@ public class CLIParser {
                         case "--time":
                             Options.time = true;
                             break;
-                        case "-ot":
-                            Options.algo = Algorithm.TMP;
+                        case "-o1":
+                        case "--ordered-1":
+                            Options.algo = Algorithm.OrderedAlgorithm;
                             break;
                         case "-o2":
                         case "--ordered-2":

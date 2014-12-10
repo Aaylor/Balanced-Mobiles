@@ -79,11 +79,11 @@ public class Main {
         AbstractAlgorithms algorithm;
 
         switch(CLIParser.Options.algo) {
-            case OrderedGreedyAlgorithm:
-                algorithm = new OrderedGreedyAlgorithm(weightList);
+            case OrderedAlgorithm:
+                algorithm = new OrderedAlgorithm(weightList);
                 break;
             case OrderedAlgorithm2:
-                algorithm = new OrderedNaiveAlgorithm2(weightList);
+                algorithm = new OrderedAlgorithm2(weightList);
                 break;
             case UnorderedAlgorithm1:
                 algorithm = new UnorderedAlgorithm(weightList);
@@ -91,11 +91,8 @@ public class Main {
             case UnorderedAlgorithm2:
                 algorithm = new UnorderedAlgorithm2(weightList);
                 break;
-            case TMP:
-                algorithm = new Ordered(weightList);
-                break;
             default:
-                algorithm = new OrderedGreedyAlgorithm(weightList);
+                algorithm = new OrderedAlgorithm(weightList);
                 break;
         }
 
