@@ -1,7 +1,6 @@
 package helpers;
 
-import algorithms.UnorderedAlgorithm;
-
+import javax.swing.text.html.Option;
 import java.util.HashMap;
 
 
@@ -14,6 +13,8 @@ public class CLIParser {
         OrderedGreedyAlgorithm,
         OrderedAlgorithm2,
         UnorderedAlgorithm1,
+        UnorderedAlgorithm2,
+        TMP
     }
 
     /**
@@ -23,8 +24,11 @@ public class CLIParser {
         public static boolean readSTDIN = true;
         public static boolean time      = false;
         public static boolean counter   = false;
+        public static boolean noout     = false;
 
         public static Algorithm algo    = Algorithm.OrderedGreedyAlgorithm;
+
+        public static Integer maxNumber = 424242;
     }
 
 
@@ -32,27 +36,11 @@ public class CLIParser {
     /** There is only one CLIParser */
     private static CLIParser parser;
 
-    /** Contains every options */
-    private static HashMap<String, Integer> options;
-
     static {
         parser = new CLIParser();
     }
 
     private CLIParser() {
-        options = new HashMap();
-
-        options.put("-t", 0);
-        options.put("--time", 0);
-
-        options.put("-r", 1);
-        options.put("--random", 1);
-
-        options.put("-c", 0);
-        options.put("--counter", 0);
-
-        options.put("-o2", 0);
-        options.put("--ordered-2", 0);
     }
 
     /**
@@ -97,6 +85,14 @@ public class CLIParser {
                         case "--counter":
                             Options.counter = true;
                             break;
+                        case "--noout":
+                            Options.noout = true;
+                            break;
+                        case "-m":
+                        case "--max":
+                            Options.maxNumber = toInt(getArgument(args, i + 1));
+                            ++i;
+                            break;
                         case "-r":
                         case "--random":
                             map.put("random", toInt(getArgument(args, i + 1)));
@@ -106,6 +102,9 @@ public class CLIParser {
                         case "--time":
                             Options.time = true;
                             break;
+                        case "-ot":
+                            Options.algo = Algorithm.TMP;
+                            break;
                         case "-o2":
                         case "--ordered-2":
                             Options.algo = Algorithm.OrderedAlgorithm2;
@@ -113,6 +112,10 @@ public class CLIParser {
                         case "-u1":
                         case "--unordered-1":
                             Options.algo = Algorithm.UnorderedAlgorithm1;
+                            break;
+                        case "-u2":
+                        case "--unordered-2":
+                            Options.algo = Algorithm.UnorderedAlgorithm2;
                             break;
                         default:
                             throw new IllegalArgumentException(

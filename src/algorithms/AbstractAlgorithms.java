@@ -49,7 +49,9 @@ public abstract class AbstractAlgorithms {
         }
         long end = System.currentTimeMillis();
 
-        System.out.println(tree);
+        if (!CLIParser.Options.noout)
+            System.out.println(tree);
+
         System.out.println(tree.root.totalBalance);
 
         timer = ((double)(end - beginning)) / 1000.0;
