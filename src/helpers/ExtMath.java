@@ -47,4 +47,8 @@ public final class ExtMath {
     public static Double half(Integer i) {
         return ((double)i) / 2.0;
     }
+
+    public static Double half(Double d) {
+        return d / 2.0;
+    }
 }

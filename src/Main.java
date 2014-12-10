@@ -1,7 +1,4 @@
-import algorithms.AbstractAlgorithms;
-import algorithms.OrderedGreedyAlgorithm;
-import algorithms.OrderedNaiveAlgorithm2;
-import algorithms.UnorderedAlgorithm;
+import algorithms.*;
 import helpers.CLIParser;
 
 import java.io.*;
@@ -60,8 +57,15 @@ public class Main {
         ArrayList<Integer> weightList = new ArrayList<>();
         Random generator = new Random();
 
+        Integer sum = 0;
+
         for (int i = 0; i < size; i++) {
-            weightList.add(generator.nextInt(size) + 1);
+            Integer generated = (generator.nextInt(CLIParser.Options.maxNumber) + 1) % Integer.MAX_VALUE;
+            if (sum + generated < 0)
+                return weightList;
+
+            sum += generated;
+            weightList.add(generated);
         }
 
         return weightList;
@@ -83,6 +87,12 @@ public class Main {
                 break;
             case UnorderedAlgorithm1:
                 algorithm = new UnorderedAlgorithm(weightList);
+                break;
+            case UnorderedAlgorithm2:
+                algorithm = new UnorderedAlgorithm2(weightList);
+                break;
+            case TMP:
+                algorithm = new Ordered(weightList);
                 break;
             default:
                 algorithm = new OrderedGreedyAlgorithm(weightList);
