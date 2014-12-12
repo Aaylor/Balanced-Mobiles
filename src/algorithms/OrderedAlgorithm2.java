@@ -51,7 +51,7 @@ public class OrderedAlgorithm2 extends AbstractAlgorithms {
         right = (rightIndex < beg ? null : W[rightIndex]);
         left  = (leftIndex  > end ? null : W[leftIndex]);
 
-        return (right == null ? leftIndex : (left == null ? rightIndex :  (left < right ? leftIndex : rightIndex)));
+        return (left == null ? rightIndex : (right == null ? leftIndex :  (right < left ? rightIndex : leftIndex)));
     }
 
 
