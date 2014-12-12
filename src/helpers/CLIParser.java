@@ -9,11 +9,11 @@ public class CLIParser {
      * Enumeration of each algorithm.
      */
     public static enum Algorithm {
+        OrderedDynamicAlgorithm,
         OrderedAlgorithm,
         OrderedAlgorithm2,
         UnorderedAlgorithm1,
         UnorderedAlgorithm2,
-        TMP
     }
 
     /**
@@ -21,6 +21,7 @@ public class CLIParser {
      */
     public static class Options {
         public static boolean readSTDIN = true;
+        public static boolean prompt    = false;
         public static boolean time      = false;
         public static boolean counter   = false;
         public static boolean noout     = false;
@@ -92,6 +93,10 @@ public class CLIParser {
                             Options.maxNumber = toInt(getArgument(args, i + 1));
                             ++i;
                             break;
+                        case "-p":
+                        case "--prompt":
+                            Options.prompt = true;
+                            break;
                         case "-r":
                         case "--random":
                             map.put("random", toInt(getArgument(args, i + 1)));
@@ -100,6 +105,10 @@ public class CLIParser {
                         case "-t":
                         case "--time":
                             Options.time = true;
+                            break;
+                        case "-od":
+                        case "--ordered-dynamic":
+                            Options.algo = Algorithm.OrderedDynamicAlgorithm;
                             break;
                         case "-o1":
                         case "--ordered-1":
