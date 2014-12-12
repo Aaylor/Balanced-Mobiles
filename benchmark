@@ -1,0 +1,130 @@
+#! /usr/bin/python2.7
+
+from os import devnull, killpg, getpgid, setsid
+from random import randint
+import subprocess
+import signal
+import sys
+import threading
+import time
+
+# handling code return error from algorithm
+NOERROR       = 0
+TIMEOUT       = 1
+STACKOVERFLOW = 2
+UNKNOWN       = 3
+
+# usefull global value
+BINARY = "./algo"
+MAX_VALUE = 100
+MAX_ITER  = 100
+RAND_LIST = [5, 10, 100, 500, 1000, 5000, 10000]
+ALGORITHMS = {
+  'od' : '`Dynamical Ordered`',
+  'o1' : '`Ordered 1`',
+  'o2' : '`Ordered 2`',
+  'u1' : '`Unordered 1`',
+  'u2' : '`Unordered 2`'
+}
+
+
+# return the correct error msg
+def error_on_avg(kind="unknown"):
+  return 'N/A (' + kind + ')'
+
+# returns a random list with [randmax] number
+def get_random(randmax=10):
+  result = ""
+  for i in range(1, randmax + 1):
+    result += str(randint(1, MAX_VALUE)) + '\n'
+  return result + "\n"
+
+def benchmark(algo, randoms):
+  weight_sum = 0
+  time_sum   = 0
+  error      = NOERROR
+
+  def timeout(p):
+    killpg(getpgid(p.pid), signal.SIGTERM)
+
+  sys.stdout.write("\t[%s]" % (" " * MAX_ITER))
+  sys.stdout.flush()
+  sys.stdout.write("\b" * (MAX_ITER + 1))
+
+  for i in range(0, MAX_ITER):
+    proc = subprocess.Popen(
+      [BINARY, '-' + algo,'-t', '--noout'],
+      preexec_fn=setsid,
+      stdin  = subprocess.PIPE,
+      stdout = subprocess.PIPE,
+      stderr = open(devnull)
+    )
+    proc.stdin.write(randoms[i])
+    t = threading.Timer(15.0, timeout, [proc])
+    t.start()
+    proc.wait()
+
+    if t.isAlive():
+      t.cancel()
+    else:
+      error = TIMEOUT
+
+    if proc.returncode == 42 and error == NOERROR:
+      error = STACKOVERFLOW
+    elif proc.returncode != NOERROR and error == NOERROR:
+      error = UNKNOWN
+
+
+    if error is NOERROR:
+      weight = proc.stdout.readline()
+      time   = proc.stdout.readline()
+
+      weight_sum += int(weight)
+      time_sum   += float(time)
+      sys.stdout.write("#")
+      sys.stdout.flush()
+    else:
+      break;
+
+  sys.stdout.write("\n")
+  if error is NOERROR:
+    weight_avg = str((weight_sum / 50))
+    time_avg   = str((time_sum   / 50)) + 's'
+  elif error is TIMEOUT:
+    weight_avg = error_on_avg("timeout")
+    time_avg   = error_on_avg("timeout")
+  elif error is STACKOVERFLOW:
+    weight_avg = error_on_avg("stack overflow")
+    time_avg   = error_on_avg("stack overflow")
+  else:
+    weight_avg = error_on_avg()
+    time_avg   = error_on_avg()
+
+  print '\t  Average weight: ' + weight_avg
+  print '\t  Average time:   ' + time_avg
+
+
+
+
+def group(algokv, randlist=RAND_LIST):
+  print "---------------------------------\n"
+
+  for randv in randlist:
+    randoms = [get_random(randv) for x in range(0, MAX_ITER)]
+
+    for key in algokv:
+      print '\tBenchmark for '  + \
+          str(ALGORITHMS[key])  + \
+          " with " + str(randv) + \
+          " random values, "    + \
+          "applied " + str(MAX_ITER) + " times."
+      benchmark(key, randoms)
+    print
+
+  print "\n---------------------------------\n\n"
+
+try:
+  group(['od', 'o1', 'o2', 'u1', 'u2'])
+except (KeyboardInterrupt):
+  sys.stderr.write("\n\nKeyboard Interrupt. Stopping benchmark.\n")
+  exit(1)
