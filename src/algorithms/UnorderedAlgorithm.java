@@ -4,6 +4,7 @@ import data.Leaf;
 import data.Node;
 import data.Tree;
 import helpers.ExtMath;
+import sun.awt.image.ImageWatched;
 
 import java.util.*;
 
@@ -55,18 +56,15 @@ public class UnorderedAlgorithm extends AbstractAlgorithms {
                 if (top) element = W.poll();
                 else element = W.pollLast();
 
-                if (leftWeight == rightWeight) {
-                    if (leftList.size() == 0 || rightList.size() == 0) {
-                        if (leftList.size() == 0){ addSortedElement(leftList, element); leftWeight -= element; }
-                        else{ addSortedElement(rightList, element); rightWeight -= element; }
-                    } else if (Math.abs(leftList.peek() - element) > (Math.abs(rightList.peek() - element))) {
+                if (leftWeight == rightWeight && (leftList.size() != 0 && rightList.size() != 0)) {
+                    if (Math.abs(leftList.peek() - element) > (Math.abs(rightList.peek() - element))) {
                         addSortedElement(rightList, element);
                         rightWeight -= element;
                     } else {
                         addSortedElement(leftList, element);
                         leftWeight -= element;
                     }
-                } else if (leftWeight > rightWeight) {
+                } else if (leftWeight >= rightWeight) {
                     addSortedElement(leftList, element);
                     leftWeight -= element;
                 } else {
