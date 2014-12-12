@@ -44,7 +44,8 @@ public abstract class AbstractAlgorithms {
             tree = mainFunction();
         } catch (StackOverflowError e) {
             System.err.println("Stack overflow, aborting.");
-            System.exit(1);
+            e.printStackTrace();
+            System.exit(42);
             return; /* Not reached, but needed. Yeah. Java. */
         }
         long end = System.currentTimeMillis();
