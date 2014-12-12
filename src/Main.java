@@ -22,7 +22,8 @@ public class Main {
             String input;
             String prompt = " ~~~> ";
             do {
-                if (CLIParser.Options.readSTDIN) System.out.print(prompt);
+                if (CLIParser.Options.readSTDIN && CLIParser.Options.prompt)
+                    System.out.print(prompt);
 
                 input = bis.readLine();
 
@@ -79,6 +80,9 @@ public class Main {
         AbstractAlgorithms algorithm;
 
         switch(CLIParser.Options.algo) {
+            case OrderedDynamicAlgorithm:
+                algorithm = new OrderedDynamicAlgorithm(weightList);
+                break;
             case OrderedAlgorithm:
                 algorithm = new OrderedAlgorithm(weightList);
                 break;
@@ -92,7 +96,7 @@ public class Main {
                 algorithm = new UnorderedAlgorithm2(weightList);
                 break;
             default:
-                algorithm = new OrderedAlgorithm(weightList);
+                algorithm = new OrderedDynamicAlgorithm(weightList);
                 break;
         }
 
