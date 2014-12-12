@@ -19,17 +19,18 @@ public class OrderedDynamicAlgorithm extends AbstractAlgorithms {
         return new Tree(constructTree());
     }
 
+    private int getRealSum(int[] sums, int beg, int end) {
+        return sums[end + 1] - sums[beg];
+    }
+
     private Node constructTree() {
         int[][] balances = new int[W.length][W.length];
         int[][] way      = new int[W.length][W.length];
-        int[][] sums     = new int[W.length][W.length];
+        int[] sums       = new int[W.length + 1];
 
-
-        for (int i = 0; i < W.length; i++) {
-            sums[i][i] = W[i];
-            for (int j = i + 1; j < W.length; j++) {
-                sums[i][j] = sums[i][j - 1] + W[j];
-            }
+        sums[0] = 0;
+        for (int i = 1; i < W.length + 1; i++) {
+            sums[i] = sums[i - 1] + W[i - 1];
         }
 
         for (int j = 0; j < W.length; j++) {
@@ -40,7 +41,7 @@ public class OrderedDynamicAlgorithm extends AbstractAlgorithms {
 
                 for (int k = i; k < j; k++) {
                     int balance =
-                            balances[i][k] + balances[k+1][j] + Math.abs(sums[i][k] - sums[k + 1][j]);
+                            balances[i][k] + balances[k+1][j] + Math.abs(getRealSum(sums, i, k) - getRealSum(sums, k + 1, j));
 
                     if (balance < localTotalBalance) {
                         indexMin = k;
