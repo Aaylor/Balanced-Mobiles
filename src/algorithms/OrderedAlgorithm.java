@@ -23,7 +23,6 @@ public class OrderedAlgorithm extends AbstractAlgorithms {
     @Override
     public Tree mainFunction() {
         int sum = ExtMath.sum(W, 0, W.length - 1);
-        addToCounter(W.length, 0, W.length);
         return new Tree(constructTree(0, W.length - 1, sum));
     }
 
@@ -36,31 +35,26 @@ public class OrderedAlgorithm extends AbstractAlgorithms {
      */
     private Node constructTree(int beg, int end, int sum) {
         if (beg >= end) {
-            addToCounter(5, 3, 1);
             return new Leaf(W[beg]);
         } else if (beg + 1 == end) {
-            addToCounter(10, 7, 1);
             return new Node(new Leaf(W[beg]), new Leaf(W[end]));
         } else {
-            double step = ExtMath.half(sum); /* 1 opération */
+            double step = ExtMath.half(sum);
             double leftSum  = step;
             double rightSum = step;
             int cpt = beg;
-            addToCounter(4, 1, 0);
 
             while (true) {
                 step -= W[cpt];
-                addToCounter(1, 1, 1);
-                if (step > 0) {
+
+                if (step > 0)
                     ++cpt;
-                    addToCounter(0, 0, 1);
-                }
-                else break;
+                else
+                    break;
             }
 
             double last = step + W[cpt];
             double absStep = Math.abs(step);
-            addToCounter(1, 1, 0);
 
             /*
                 Par défaut, l'algorithme décale à droite.
@@ -77,15 +71,10 @@ public class OrderedAlgorithm extends AbstractAlgorithms {
 
                 leftSum  += absStep;
                 rightSum -= absStep;
-
-                if (Math.abs(step) < last) comparisonCounter++;
-                else comparisonCounter += 2;
-                addToCounter(1, 1, 0);
             } else {
                 leftSum  -= last;
                 rightSum += last;
             }
-            addToCounter(2, 0, 4);
 
             return new Node(constructTree(beg, cpt - 1, (int)leftSum), constructTree(cpt, end, (int)rightSum));
         }
