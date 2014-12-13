@@ -26,9 +26,9 @@ public class CLIParser {
         public static boolean counter   = false;
         public static boolean noout     = false;
 
-        public static Algorithm algo    = Algorithm.OrderedAlgorithm;
+        public static Algorithm algo    = Algorithm.OrderedDynamicAlgorithm;
 
-        public static Integer maxNumber = 424242;
+        public static Integer maxNumber = 100;
     }
 
 

@@ -27,6 +27,8 @@ ALGORITHMS = {
   'u2' : '`Unordered 2`'
 }
 
+REDIRECT = False
+
 
 # return the correct error msg
 def error_on_avg(kind="unknown"):
@@ -47,9 +49,10 @@ def benchmark(algo, randoms):
   def timeout(p):
     killpg(getpgid(p.pid), signal.SIGTERM)
 
-  sys.stdout.write("\t[%s]" % (" " * MAX_ITER))
-  sys.stdout.flush()
-  sys.stdout.write("\b" * (MAX_ITER + 1))
+  if not REDIRECT:
+    sys.stdout.write("\t[%s]" % (" " * MAX_ITER))
+    sys.stdout.flush()
+    sys.stdout.write("\b" * (MAX_ITER + 1))
 
   for i in range(0, MAX_ITER):
     proc = subprocess.Popen(
@@ -81,8 +84,10 @@ def benchmark(algo, randoms):
 
       weight_sum += int(weight)
       time_sum   += float(time)
-      sys.stdout.write("#")
-      sys.stdout.flush()
+
+      if not REDIRECT:
+        sys.stdout.write("#")
+        sys.stdout.flush()
     else:
       break;
 
@@ -102,6 +107,10 @@ def benchmark(algo, randoms):
 
   print '\t  Average weight: ' + weight_avg
   print '\t  Average time:   ' + time_avg
+  print
+
+  if not REDIRECT:
+    sys.stderr.write("Done for size: " + str(len(randoms)))
 
 
 
@@ -111,6 +120,8 @@ def group(algokv, randlist=RAND_LIST):
 
   for randv in randlist:
     randoms = [get_random(randv) for x in range(0, MAX_ITER)]
+
+    print "\n~~~~~\n"
 
     for key in algokv:
       print '\tBenchmark for '  + \
@@ -123,8 +134,15 @@ def group(algokv, randlist=RAND_LIST):
 
   print "\n---------------------------------\n\n"
 
+
+
+if len(sys.argv) > 1:
+  if sys.argv[1] == "--no-pg":
+    REDIRECT = True
+
 try:
   group(['od', 'o1', 'o2', 'u1', 'u2'])
 except (KeyboardInterrupt):
   sys.stderr.write("\n\nKeyboard Interrupt. Stopping benchmark.\n")
   exit(1)
+
