@@ -19,10 +19,21 @@ public class OrderedDynamicAlgorithm extends AbstractAlgorithms {
         return new Tree(constructTree());
     }
 
+    /**
+     * Returns the sum from beg to end.
+     * @param sums array of sums
+     * @param beg beginning of area
+     * @param end end of area
+     * @return the sum
+     */
     private int getRealSum(int[] sums, int beg, int end) {
         return sums[end + 1] - sums[beg];
     }
 
+    /**
+     * Create the tree
+     * @return the solution
+     */
     private Node constructTree() {
         int[][] balances = new int[W.length][W.length];
         int[][] way      = new int[W.length][W.length];
@@ -41,7 +52,8 @@ public class OrderedDynamicAlgorithm extends AbstractAlgorithms {
 
                 for (int k = i; k < j; k++) {
                     int balance =
-                            balances[i][k] + balances[k+1][j] + Math.abs(getRealSum(sums, i, k) - getRealSum(sums, k + 1, j));
+                            balances[i][k] + balances[k+1][j] +
+                            Math.abs(getRealSum(sums, i, k) - getRealSum(sums, k + 1, j));
 
                     if (balance < localTotalBalance) {
                         indexMin = k;
@@ -58,10 +70,22 @@ public class OrderedDynamicAlgorithm extends AbstractAlgorithms {
         return reconstructTree(way);
     }
 
+    /**
+     * Reconstruct according to the optimal way given by the algorihtm.
+     * @param way optimal way build by the algorithm
+     * @return the solution
+     */
     public Node reconstructTree(int[][] way) {
         return helper(way, 0, W.length - 1);
     }
 
+    /**
+     * Called to reconstruct the tree.
+     * @param way optimal way build by the algorithm
+     * @param beg beginning of area
+     * @param end end of area
+     * @return the solution
+     */
     private Node helper(int[][] way, int beg, int end) {
         if (beg >= end) {
             return new Leaf(W[beg]);

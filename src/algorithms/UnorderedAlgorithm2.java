@@ -24,11 +24,19 @@ public class UnorderedAlgorithm2 extends AbstractAlgorithms {
         return new Tree(createNode());
     }
 
-
+    /**
+     * Remove and return the first element of the array.
+     * @param W weight list
+     * @return the removed element
+     */
     private Integer poll(ArrayList<Integer> W) {
         return W.remove(0);
     }
 
+    /**
+     * Create the solution
+     * @return the solution
+     */
     private Node createNode() {
         if (W.size() == 1)
             return new Leaf(poll(W));

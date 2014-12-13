@@ -22,6 +22,11 @@ public class UnorderedAlgorithm extends AbstractAlgorithms {
         return new Tree(createNode(weightList, sum));
     }
 
+    /**
+     * Add an element to keep the list sorted.
+     * @param W the list
+     * @param element the element to add
+     */
     private void addSortedElement(LinkedList<Integer> W, Integer element) {
         ListIterator<Integer> iterator = W.listIterator();
         while(iterator.hasNext()) {
@@ -36,6 +41,12 @@ public class UnorderedAlgorithm extends AbstractAlgorithms {
         W.addLast(element);
     }
 
+    /**
+     * Create the solution.
+     * @param W the weight list
+     * @param sum the weight list's sum
+     * @return the sum
+     */
     private Node createNode(LinkedList<Integer> W, double sum) {
         if (W.size() == 1)
             return new Leaf(W.poll());
@@ -55,8 +66,10 @@ public class UnorderedAlgorithm extends AbstractAlgorithms {
                 if (top) element = W.poll();
                 else element = W.pollLast();
 
-                if (leftWeight == rightWeight && (leftList.size() != 0 && rightList.size() != 0)) {
-                    if (Math.abs(leftList.peek() - element) > (Math.abs(rightList.peek() - element))) {
+                if (leftWeight == rightWeight && (leftList.size() != 0
+                        && rightList.size() != 0)) {
+                    if (Math.abs(leftList.peek() - element)
+                            > (Math.abs(rightList.peek() - element))) {
                         addSortedElement(rightList, element);
                         rightWeight -= element;
                     } else {

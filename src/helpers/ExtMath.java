@@ -28,6 +28,11 @@ public final class ExtMath {
         return result;
     }
 
+    /**
+     * Returns the sum from the given LinkedList.
+     * @param array the given list
+     * @return the sum
+     */
     public static Integer sum(LinkedList<Integer> array) {
         Iterator<Integer> iterator = array.iterator();
         int sum = 0;

@@ -28,6 +28,12 @@ public class OrderedAlgorithm2 extends AbstractAlgorithms {
         return new Tree(constructTree(0, W.length - 1));
     }
 
+    /**
+     * Returns the index of the min value into the W array.
+     * @param beg beginning of area to scan
+     * @param end end of area
+     * @return index of min value
+     */
     private int indexMin(int beg, int end) {
         int index = beg;
         int min   = W[beg];
@@ -42,6 +48,13 @@ public class OrderedAlgorithm2 extends AbstractAlgorithms {
         return index;
     }
 
+    /**
+     * Returns the index of the less unbalanced node.
+     * @param beg beginning of area
+     * @param end end of area
+     * @param index index
+     * @return index that make the less unbalanced node
+     */
     private int chooseMinUnbalanced(int beg, int end, int index) {
         Integer right, left;
 
@@ -54,7 +67,12 @@ public class OrderedAlgorithm2 extends AbstractAlgorithms {
         return (left == null ? rightIndex : (right == null ? leftIndex :  (right < left ? rightIndex : leftIndex)));
     }
 
-
+    /**
+     * Construct the tree. Main algorithm function here.
+     * @param beg beginning of are
+     * @param end end of area
+     * @return the solution
+     */
     private Node constructTree(int beg, int end) {
         if (beg == end) return new Leaf(W[beg]);
         else if (beg + 1 == end) return new Node(new Leaf(W[beg]), new Leaf(W[end]));
