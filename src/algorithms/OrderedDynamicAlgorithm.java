@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class OrderedDynamicAlgorithm extends AbstractAlgorithms {
 
-    Integer[] W;
+    private final Integer[] W;
 
     public OrderedDynamicAlgorithm(ArrayList<Integer> W) {
         this.W = W.toArray(new Integer[0]);

@@ -6,14 +6,11 @@ import data.Tree;
 
 import java.util.ArrayList;
 
-/**
- * Created by aaylor on 09/12/14.
- */
 public class OrderedAlgorithm2 extends AbstractAlgorithms {
     /**
      * The Weight list.
      */
-    private Integer[] W;
+    private final Integer[] W;
 
     /**
      * Create the algorithm with the given entry.

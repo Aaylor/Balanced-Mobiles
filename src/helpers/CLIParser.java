@@ -23,7 +23,6 @@ public class CLIParser {
         public static boolean readSTDIN = true;
         public static boolean prompt    = false;
         public static boolean time      = false;
-        public static boolean counter   = false;
         public static boolean noout     = false;
 
         public static Algorithm algo    = Algorithm.OrderedDynamicAlgorithm;
@@ -31,14 +30,6 @@ public class CLIParser {
         public static Integer maxNumber = 100;
     }
 
-
-
-    /** There is only one CLIParser */
-    private static CLIParser parser;
-
-    static {
-        parser = new CLIParser();
-    }
 
     private CLIParser() {
     }
@@ -81,10 +72,6 @@ public class CLIParser {
             switch (args[i].charAt(0)) {
                 case '-':
                     switch(args[i]) {
-                        case "-c":
-                        case "--counter":
-                            Options.counter = true;
-                            break;
                         case "--noout":
                             Options.noout = true;
                             break;

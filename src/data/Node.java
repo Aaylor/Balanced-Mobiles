@@ -2,7 +2,6 @@ package data;
 
 public class Node {
 
-    public Node parentNode;
     public Node leftChild;
     public Node rightChild;
     public int  weight;
@@ -10,7 +9,6 @@ public class Node {
     public int  totalBalance;
 
     public Node() {
-        parentNode  = null;
         leftChild   = null;
         rightChild  = null;
         weight      = 0;
@@ -23,7 +21,6 @@ public class Node {
     }
 
     public Node(Node leftChild, Node rightChild, int weight, int balance, int totalBalance) {
-        this.parentNode = null;
         this.leftChild  = leftChild;
         this.rightChild = rightChild;
         this.weight     = weight;

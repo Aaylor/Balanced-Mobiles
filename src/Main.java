@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-public class Main {
+class Main {
 
     /**
      * Read weight in the given input (could be a file or STDIN)
      * @param stream stream
      * @return the weight list
      */
-    public static ArrayList<Integer> readWeight(InputStream stream) {
+    private static ArrayList<Integer> readWeight(InputStream stream) {
         int lineNumber = 1;
         ArrayList<Integer> weightList = new ArrayList<>();
         BufferedReader bis = new BufferedReader(new InputStreamReader(stream));
@@ -54,7 +54,7 @@ public class Main {
      * @param size the list size
      * @return the weight list
      */
-    public static ArrayList<Integer> randomWeight(int size) {
+    private static ArrayList<Integer> randomWeight(int size) {
         ArrayList<Integer> weightList = new ArrayList<>();
         Random generator = new Random();
 
@@ -74,9 +74,9 @@ public class Main {
 
     /**
      * Run the correct algorithm, according to the CLIParser args parsing.
-     * @param weightList
+     * @param weightList weight list
      */
-    public static void runAlgorithm(ArrayList<Integer> weightList) {
+    private static void runAlgorithm(ArrayList<Integer> weightList) {
         AbstractAlgorithms algorithm;
 
         switch(CLIParser.Options.algo) {

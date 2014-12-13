@@ -3,13 +3,9 @@ package algorithms;
 import data.Leaf;
 import data.Node;
 import data.Tree;
-import helpers.ExtMath;
 
 import java.util.*;
 
-/**
- * Created by aaylor on 09/12/14.
- */
 public class UnorderedAlgorithm2 extends AbstractAlgorithms {
 
     private ArrayList<Integer> W;

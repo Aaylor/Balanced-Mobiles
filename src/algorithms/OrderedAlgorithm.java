@@ -10,7 +10,7 @@ public class OrderedAlgorithm extends AbstractAlgorithms {
     /**
      * The Weight list.
      */
-    private Integer[] W;
+    private final Integer[] W;
 
     /**
      * Create the algorithm with the given entry.
