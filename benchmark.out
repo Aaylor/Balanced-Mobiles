@@ -1,0 +1,238 @@
+---------------------------------
+
+
+~~~~~
+
+	Benchmark for `Dynamical Ordered` with 5 random values, applied 100 times.
+
+	  Average weight: 233
+	  Average time:   0.00094s
+
+	Benchmark for `Ordered 1` with 5 random values, applied 100 times.
+
+	  Average weight: 237
+	  Average time:   0.002s
+
+	Benchmark for `Ordered 2` with 5 random values, applied 100 times.
+
+	  Average weight: 325
+	  Average time:   0.00096s
+
+	Benchmark for `Unordered 1` with 5 random values, applied 100 times.
+
+	  Average weight: 207
+	  Average time:   0.0024s
+
+	Benchmark for `Unordered 2` with 5 random values, applied 100 times.
+
+	  Average weight: 171
+	  Average time:   0.00132s
+
+
+
+~~~~~
+
+	Benchmark for `Dynamical Ordered` with 10 random values, applied 100 times.
+
+	  Average weight: 523
+	  Average time:   0.0013s
+
+	Benchmark for `Ordered 1` with 10 random values, applied 100 times.
+
+	  Average weight: 553
+	  Average time:   0.00188s
+
+	Benchmark for `Ordered 2` with 10 random values, applied 100 times.
+
+	  Average weight: 1373
+	  Average time:   0.0008s
+
+	Benchmark for `Unordered 1` with 10 random values, applied 100 times.
+
+	  Average weight: 456
+	  Average time:   0.00262s
+
+	Benchmark for `Unordered 2` with 10 random values, applied 100 times.
+
+	  Average weight: 643
+	  Average time:   0.00114s
+
+
+
+~~~~~
+
+	Benchmark for `Dynamical Ordered` with 100 random values, applied 100 times.
+
+	  Average weight: 5147
+	  Average time:   0.0217s
+
+	Benchmark for `Ordered 1` with 100 random values, applied 100 times.
+
+	  Average weight: 5822
+	  Average time:   0.00292s
+
+	Benchmark for `Ordered 2` with 100 random values, applied 100 times.
+
+	  Average weight: 48490
+	  Average time:   0.00136s
+
+	Benchmark for `Unordered 1` with 100 random values, applied 100 times.
+
+	  Average weight: 4094
+	  Average time:   0.00622s
+
+	Benchmark for `Unordered 2` with 100 random values, applied 100 times.
+
+	  Average weight: 154183
+	  Average time:   0.00184s
+
+
+
+~~~~~
+
+	Benchmark for `Dynamical Ordered` with 500 random values, applied 100 times.
+
+	  Average weight: 27222
+	  Average time:   0.32468s
+
+	Benchmark for `Ordered 1` with 500 random values, applied 100 times.
+
+	  Average weight: 31105
+	  Average time:   0.00464s
+
+	Benchmark for `Ordered 2` with 500 random values, applied 100 times.
+
+	  Average weight: 456525
+	  Average time:   0.00296s
+
+	Benchmark for `Unordered 1` with 500 random values, applied 100 times.
+
+	  Average weight: 24806
+	  Average time:   0.01658s
+
+	Benchmark for `Unordered 2` with 500 random values, applied 100 times.
+
+	  Average weight: 4151250
+	  Average time:   0.00416s
+
+
+
+~~~~~
+
+	Benchmark for `Dynamical Ordered` with 1000 random values, applied 100 times.
+
+	  Average weight: 54286
+	  Average time:   2.58156s
+
+	Benchmark for `Ordered 1` with 1000 random values, applied 100 times.
+
+	  Average weight: 62337
+	  Average time:   0.0086s
+
+	Benchmark for `Ordered 2` with 1000 random values, applied 100 times.
+
+	  Average weight: 1284963
+	  Average time:   0.00508s
+
+	Benchmark for `Unordered 1` with 1000 random values, applied 100 times.
+
+	  Average weight: 50053
+	  Average time:   0.03626s
+
+	Benchmark for `Unordered 2` with 1000 random values, applied 100 times.
+
+	  Average weight: 16797680
+	  Average time:   0.01288s
+
+
+
+~~~~~
+
+	Benchmark for `Dynamical Ordered` with 1750 random values, applied 100 times.
+
+	  Average weight: 91023
+	  Average time:   18.29288s
+
+	Benchmark for `Ordered 1` with 1750 random values, applied 100 times.
+
+	  Average weight: 104244
+	  Average time:   0.011s
+
+	Benchmark for `Ordered 2` with 1750 random values, applied 100 times.
+
+	  Average weight: 3301893
+	  Average time:   0.00882s
+
+	Benchmark for `Unordered 1` with 1750 random values, applied 100 times.
+
+	  Average weight: 70902
+	  Average time:   0.0566s
+
+	Benchmark for `Unordered 2` with 1750 random values, applied 100 times.
+
+	  Average weight: 51639352
+	  Average time:   0.01528s
+
+
+
+~~~~~
+
+	Benchmark for `Dynamical Ordered` with 5000 random values, applied 100 times.
+
+	  Average weight: N/A (timeout)
+	  Average time:   N/A (timeout)
+
+	Benchmark for `Ordered 1` with 5000 random values, applied 100 times.
+
+	  Average weight: 314146
+	  Average time:   0.01718s
+
+	Benchmark for `Ordered 2` with 5000 random values, applied 100 times.
+
+	  Average weight: 21865841
+	  Average time:   0.01636s
+
+	Benchmark for `Unordered 1` with 5000 random values, applied 100 times.
+
+	  Average weight: 262530
+	  Average time:   0.14016s
+
+	Benchmark for `Unordered 2` with 5000 random values, applied 100 times.
+
+	  Average weight: 422048249
+	  Average time:   0.01906s
+
+
+
+~~~~~
+
+	Benchmark for `Dynamical Ordered` with 10000 random values, applied 100 times.
+
+	  Average weight: N/A (timeout)
+	  Average time:   N/A (timeout)
+
+	Benchmark for `Ordered 1` with 10000 random values, applied 100 times.
+
+	  Average weight: 627730
+	  Average time:   0.02308s
+
+	Benchmark for `Ordered 2` with 10000 random values, applied 100 times.
+
+	  Average weight: 81377082
+	  Average time:   0.02958s
+
+	Benchmark for `Unordered 1` with 10000 random values, applied 100 times.
+
+	  Average weight: 524464
+	  Average time:   0.33032s
+
+	Benchmark for `Unordered 2` with 10000 random values, applied 100 times.
+
+	  Average weight: N/A (stack overflow)
+	  Average time:   N/A (stack overflow)
+
+
+
+---------------------------------
+
+
