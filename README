@@ -1,0 +1,112 @@
+Compilation
+==========
+
+Un simple `make` suffit à compiler le code source.  
+Il utilisera par défaut ant si disponnible, sinon javac.  
+
+
+Execution
+=====
+
+Utiliser le script algo, étant un raccourci pour lancer l'application java.
+
+Options possible pour l'éxécutions
+=====
+
+——noout  
+N’affiche pas l’arbre de sortie en output. Utilisé notamment lors du benchmark
+(car totalement inutile), mais aussi lors de l’exécution de tests comportant un
+nombre important de poids.  
+  
+
+—m <int> ——max <int>  
+Indique le nombre maximum à ne pas dépasser lors de la génération aléatoire de
+la liste de poids.  
+  
+
+—p ——prompt  
+Lors de la lecture de l’entrée standard, affiche un prompt afin de privilégier
+la lisibilité.  
+  
+
+—r <int> ——random <int>  
+Indique la volonté de créer une liste de poids aléatoire de taille donnée en
+argument.  
+  
+
+—t ——time  
+Active l’affichage du temps que l’algorithme a utilisé afin de calculer son
+résultat.
+  
+
+—od ——ordered-dynamic  
+Active l’algorithme « Dynamique Ordonné »
+  
+
+—o1 ——ordered-1  
+Active l’algorithme « Ordonné 1 »
+  
+
+—o2 ——ordered-2  
+Active l’algorithme « Ordonné 2 »
+  
+
+—u1 ——unordered-1  
+Active l’algorithme « Désordonné 1 »
+  
+
+—u2 ——unordered-2  
+Active l’algorithme « Désordonné 2 »
+  
+
+Fichiers
+====
+
+data.Leaf  
+Classe correspondant à la structure de donnée d’une feuille.  
+La feuille est considérée comme une extension d’un noeud, ne possédant pas
+d’enfant et ayant un équilibre (total ou non) de 0.  
+  
+data.Node
+Classe correspondant à la structure de donnée d'un noeud.  
+  
+data.Tree  
+Classe correspondant à la structure de donnée d'un arbre. Actuellement la
+classe ne contient que sa racine, qui n’est autre qu’un noeud.  
+  
+helpers.CLIParser  
+CLIParser (alias Command Line Interactive Parser), est une classe statique
+permettant le parsing des arguments donnés par l’utilisateur, afin mettre à
+jour les options.
+Contient une classe de nom Options en son sein, afin de concentrer l’ensemble
+des options à l’intérieur.  
+  
+helpers.ExtMath  
+Contient quelques fonctions utilitaires de mathématique (comme la somme d’un
+sous- tableau), utilisées par les algorithmes.  
+  
+algorithms.AbstractAlgorithm  
+Classe abstraite, permettant de généraliser le lancement des algorithmes. C’est
+elle qui gère les timers, et les outputs en fonction des options données par
+l’utilisateur.  
+  
+algorithms.OrderedAlgorithm
+Classe correspondant à l’algorithme « Ordonné 1 », étend la classe
+AbstractAlgorithms.  
+  
+algorithms.OrderedAlgorithm2
+Classe correspondant à l'algorithme « Ordonné 2 », étend la classe
+AbstractAlgorithms.  
+  
+algorithms.OrderedDynamicalAlgorithm  
+Classe correspondant à l'algorithme « Dynamique Ordonné », étend la classe
+AbstractAlgorithms.  
+  
+algorithms.UnorderedAlgorithm  
+Classe correspondant à l'algorithme « Désordonné 1 », étend la classe AbstractAlgorithms.
+  
+algorithms.UnorderedAlgorithm2  
+Classe correspondant à l’algorithme « Désordonné 2 », étend la classe
+AbstractAlgorithms.
+￼
+
